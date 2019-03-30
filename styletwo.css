@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  font-family: Ubuntu, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #46463a;
+}
+
+/* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 130px;
+  overflow: auto;
+}
+
+/* The footer is positioned at the bottom of the page */
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 100px;
+  background: #4e5d6c;
+}
+
+/* The code styles the text at the bottom of the footer */
+.footer > .bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  background: #1b3146;
+}
+
+
+
+/* The styles for the parallax */
+.beer {
+  position: relative;
+  height: 300px;
+  padding: 200 px;
+  margin: 0;
+  background: black;
+  background-image: url("beersix.jpg");
+  background-attachment: fixed;
+  background-position: bottom center;
+  background-size: cover;
+}
+
+.beer h1 {
+  margin-top: 0px;
+  font-size: 0.1rem;
+  animation: title 1.2s forwards linear;
+  text-align: center
+}
+
+.beer p {
+  font-size: 3rem;
+  opacity: 0;
+  animation: subtitle 1.2s forwards linear;
+  animation-delay: 1.2s;
+  text-align:center
+}
+
+
+
+  .beer h1 {
+    animation: smaller-title 1.2s forwards linear;
+  }
+}
+
+/* keyframe animations which will be used to animate the title */
+@keyframes title {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    font-size: 7.5rem;
+    opacity: 1;
+  }
+}
+
+@keyframes smaller-title {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    font-size: 5.5rem;
+    opacity: 1;
+  }
+}
+
+@keyframes subtitle {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
