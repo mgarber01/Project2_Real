@@ -1,0 +1,123 @@
+
+
+<html>
+<head>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-treemap.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+  <style type="text/css">
+html, body, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+</style>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+anychart.onDocumentReady(function () {
+    // The data used in this sample can be obtained from the CDN
+    // https://cdn.anychart.com/samples/tree-map-charts/starbucks-by-country/data.json
+    anychart.data.loadJsonFile('https://cdn.anychart.com/samples/tree-map-charts/starbucks-by-country/data.json', function (data) {
+        // define themes settings for font
+        var customTheme = {
+            defaultFontSettings: {
+                fontFamily: '"Source Sans Pro", sans-serif',
+                fontSize: 13
+            }
+        };
+
+        anychart.theme(customTheme);
+
+        // makes tree from the data for the sample
+        var dataTree = anychart.data.tree(data, 'as-table');
+        var chart = anychart.treeMap(dataTree);
+
+        // sets scale
+        var scale = anychart.scales.ordinalColor([
+            {less: 1},
+            {from: 1, to: 1000},
+            {from: 1001, to: 7500},
+            {from: 7501, to: 15000},
+            {from: 15001, to: 30000},
+            {from: 30001, to: 60000},
+            {from: 60001, to: 10000},
+            {from: 100001, to: 500000},
+            {from: 500001, to: 1000000},
+            {from: 1000001, to: 1999999},
+            {from: 2000000, to: 6000000},
+            {greater: 6000001},
+        ]);
+
+        // sets colors for scale
+        scale.colors(['#f4eed4', '#f7ebb7', '#e0ce7f', '#baa85d', '#96843c', '#d3b439', '#e8c025','#ad8e14','#ad8e14','#ad8e14','#ad8e14','#f7c502']);
+
+        // sets chart settings
+        chart.selectionMode('none')
+                .colorScale(scale);
+
+        chart.hovered()
+                .fill('#fcece2')
+                .stroke('#a1887f');
+
+        // sets credits for this sample
+        //chart.credits()
+                //.enabled(true)
+                //.url('https://opendata.socrata.com/Business/All-Starbucks-Locations-in-the-World/xy4y-c4mk')
+                //.text('Data source: https://opendata.socrata.com')
+               // .logoSrc('https://opendata.socrata.com/stylesheets/images/common/favicon.ico');
+
+        // sets title
+        chart.title()
+                .enabled(true)
+                .useHtml(true)
+                .fontSize(18)
+                .text('Beer Production<br/>' +
+                        '<span style="color: #212121; font-size: 14px">' +
+                        'According to opendata.socrata.com</span>');
+
+        // turns legend on
+        chart.legend()
+                .enabled(true)
+                .padding([0, 0, 20, 0]);
+
+        // sets labels settings
+        chart.labels()
+                .enabled(true)
+                .fontSize(16)
+                .textOverflow('');
+
+        // sets tooltip settings and formatter
+        var tooltip = chart.tooltip();
+        tooltip.title()
+                .padding({bottom: 8})
+                .fontSize(16)
+                .fontColor('#5d4037');
+        tooltip.background()
+                .fill('#d7ccc8 0.9')
+                .stroke('3 #bcaaa4')
+                .corners(7);
+        tooltip.useHtml(true)
+                .padding([10, 20])
+                .separator(false)
+                .fontColor('#3e2723')
+                .format(function () {
+                    return '<span style="color: #3e2723">Number of Starbucks: ' + '</span>' +
+                            parseInt(this.value).toLocaleString();
+                });
+
+        // set container id for the chart
+        chart.container('container');
+        // initiate chart drawing
+        chart.draw();
+    });
+});
+</script>
+</body>
+</html>
