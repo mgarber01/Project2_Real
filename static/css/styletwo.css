@@ -48,7 +48,7 @@ body {
   padding: 200 px;
   margin: 0;
   background: black;
-  background-image: url("beersix.jpg");
+  background-image: url("../images/beersix.jpg");
   background-attachment: fixed;
   background-position: bottom center;
   background-size: cover;
