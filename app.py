@@ -56,19 +56,19 @@ class annual_production(db.Model):
 
 def grab():
     if request.method == "GET":
-        annual_procucktion_list = []
+        annual_production_list = []
         results = db.session.query(annual_production).all()
         for x in results:
-            annual_procucktion_dict = {}
+            annual_production_dict = {}
             
-            annual_procucktion_dict['year'] = x.year
-            annual_procucktion_dict['Barrels'] = x.Barrels
-            annual_procucktion_dict['Breweries_Count'] = x.Breweries_Count
-            annual_procucktion_dict['Total_Barrels'] = x.Total_Barrels
-            annual_procucktion_dict['Domestic_Consumption'] = x.Domestic_Consumption
-            annual_procucktion_dict['Exported_Barrels'] = x.Exported_Barrels
-            annual_procucktion_list.append(annual_procucktion_dict)
-        return jsonify(annual_procucktion_list)
+            annual_production_dict['year'] = x.year
+            annual_production_dict['Barrels'] = x.Barrels
+            annual_production_dict['Breweries_Count'] = x.Breweries_Count
+            annual_production_dict['Total_Barrels'] = x.Total_Barrels
+            annual_production_dict['Domestic_Consumption'] = x.Domestic_Consumption
+            annual_production_dict['Exported_Barrels'] = x.Exported_Barrels
+            annual_production_list.append(annual_production_dict)
+        return jsonify(annual_production_list)
     return render_template("index.html")
 
 @app.route("/")
