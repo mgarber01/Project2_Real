@@ -5,10 +5,12 @@
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-treemap.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js?hcode=be5162d915534272a57d0bb781d27f2b"></script>
   <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
   <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css?hcode=be5162d915534272a57d0bb781d27f2b" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="..\static/js/app2.js"></script>
   <style type="text/css">
 html, body, #container {
     width: 100%;
@@ -24,7 +26,7 @@ html, body, #container {
 anychart.onDocumentReady(function () {
     // The data used in this sample can be obtained from the CDN
     // https://cdn.anychart.com/samples/tree-map-charts/starbucks-by-country/data.json
-    anychart.data.loadJsonFile('https://cdn.anychart.com/samples/tree-map-charts/starbucks-by-country/data.json', function (data) {
+    anychart.data.loadJsonFile('http://127.0.0.1:5000/grab', function (data) {
         // define themes settings for font
         var customTheme = {
             defaultFontSettings: {
@@ -80,7 +82,7 @@ anychart.onDocumentReady(function () {
                 .fontSize(18)
                 .text('Beer Production<br/>' +
                         '<span style="color: #212121; font-size: 14px">' +
-                        'According to opendata.socrata.com</span>');
+                        'According to Alcohol and Tobacco Trade and Tax Bureau.</span>');
 
         // turns legend on
         chart.legend()
