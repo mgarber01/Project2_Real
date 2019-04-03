@@ -57,7 +57,7 @@ function handleclick(){
 
 
         }
-
+}
         
 var btn = document.getElementById("VIZ2");
 btn.addEventListener("click",handleclick);
