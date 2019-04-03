@@ -31,7 +31,7 @@ class annual_production(db.Model):
     __tablename__ = 'annual_production'
     index =  db.Column('index',db.Integer,primary_key = True)
     year =  db.Column('year',db.String(64))
-    Barrels= db.Column('Barrels (31 gallons) (2)',db.String(64))
+    Brewery_Size= db.Column('Barrels (31 gallons) (2)',db.String(64))
     Breweries_Count = db.Column('Number of Breweries (1)',db.String(64))
     Total_Barrels = db.Column('Total Barrels (3)',db.String(64))
     Domestic_Consumption = db.Column('Taxable Removals (4)',db.String(64))
@@ -62,7 +62,7 @@ def grab():
             annual_production_dict = {}
             
             annual_production_dict['year'] = x.year
-            annual_production_dict['Barrels'] = x.Barrels
+            annual_production_dict['Barrels'] = x.Brewery_Size
             annual_production_dict['Breweries_Count'] = x.Breweries_Count
             annual_production_dict['Total_Barrels'] = x.Total_Barrels
             annual_production_dict['Domestic_Consumption'] = x.Domestic_Consumption
