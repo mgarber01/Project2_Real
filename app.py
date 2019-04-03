@@ -1,6 +1,7 @@
 import sqlalchemy
 import pandas as  pd 
 import os 
+
    # from sqlalchemy.ext.automap import automap_base
     ##from sqlalchemy.orm import Session
     #from sqlalchemy.orm import scoped_session, sessionmaker
@@ -16,12 +17,13 @@ from flask import (
     render_template,
     jsonify,
     request)
-
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__ ))
 
 app = Flask(__name__)
+CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+os.path.join(basedir,"BEER.sqlite.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
