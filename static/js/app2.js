@@ -59,15 +59,8 @@ function handleclick2(){
 
         }
         Http.send()
-<<<<<<< HEAD:static/js/app3.js
-}; 
-
-
-=======
-
 };
-        
->>>>>>> 816c532fb7781fd5d5288a5e4cc7629af93e0d9a:static/js/app2.js
+
 var btn = document.getElementById("VIZ2");
 btn.addEventListener("click",handleclick3);
 function handleclick3(){
@@ -89,3 +82,4 @@ function handleclick3(){
         }
         Http.send()
 };
+    
