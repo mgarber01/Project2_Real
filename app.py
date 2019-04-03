@@ -17,13 +17,13 @@ from flask import (
     render_template,
     jsonify,
     request)
-from flask_cors import CORS
+#from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__ ))
 
 app = Flask(__name__)
-CORS(app)
+
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+os.path.join(basedir,"BEER.sqlite.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -33,11 +33,20 @@ class annual_production(db.Model):
     __tablename__ = 'annual_production'
     index =  db.Column('index',db.Integer,primary_key = True)
     year =  db.Column('year',db.String(64))
-    Brewery_Size= db.Column('Barrels (31 gallons) (2)',db.String(64))
-    Breweries_Count = db.Column('Number of Breweries (1)',db.String(64))
-    Total_Barrels = db.Column('Total Barrels (3)',db.String(64))
-    Domestic_Consumption = db.Column('Taxable Removals (4)',db.String(64))
-    Exported_Barrels = db.Column('Total Shipped (Exported) (6)')
+    brewery_size= db.Column('brewry_size',db.String(64))
+    brewery_count = db.Column('brewier_count',db.String(64))
+    total_barrels = db.Column('total_barrels',db.String(64))
+    domestic_consumption = db.Column('domestic_consumption',db.String(64))
+    exported_barrels = db.Column('exported_barrels',db.String(64))
+
+db2 = SQLAlchemy(app)
+class vw_total_prod_by_size(db2.Model):
+    __tablename__ = "vw_total_prod_by_size"
+    index = db2.Column("index",db2.Integer,primary_key = True)
+    brewery_size = db2.Column('brewry_size',db2.String(64))
+    
+    total_barrels = db2.Column('total_barrels',db2.String(64))
+   
     
 
 
@@ -64,14 +73,34 @@ def grab():
             annual_production_dict = {}
             
             annual_production_dict['year'] = x.year
-            annual_production_dict['Brewery_Size'] = x.Brewery_Size
-            annual_production_dict['Breweries_Count'] = x.Breweries_Count
-            annual_production_dict['Total_Barrels'] = x.Total_Barrels
-            annual_production_dict['Domestic_Consumption'] = x.Domestic_Consumption
-            annual_production_dict['Exported_Barrels'] = x.Exported_Barrels
+            annual_production_dict['brewery_size'] = x.brewery_size
+            annual_production_dict['brewery_count'] = x.brewery_count
+            annual_production_dict['total_barrels'] = x.total_barrels
+            annual_production_dict['domestic_consumption'] = x.domestic_consumption
+            annual_production_dict['exported_barrels'] = x.exported_barrels
             annual_production_list.append(annual_production_dict)
         return jsonify(annual_production_list)
-    return render_template("index.html")
+    
+
+
+
+@app.route("/grab/data", methods = ['GET'])
+def grab2():
+     if request.method == "GET":
+        view_list = []
+        results = db2.session.query(vw_total_prod_by_size).all()
+        for x in results:
+            view_dict = {}
+
+            view_dict['brewery_size'] = x.brewery_size
+            view_dict['total_barrels'] = x.total_barrels
+            view_list.append(view_dict)
+        return jsonify(view_list)
+
+        
+
+        
+   
 
 @app.route("/")
 def home():
