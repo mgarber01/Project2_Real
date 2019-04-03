@@ -62,7 +62,7 @@ def grab():
             annual_production_dict = {}
             
             annual_production_dict['year'] = x.year
-            annual_production_dict['Barrels'] = x.Brewery_Size
+            annual_production_dict['Brewery_Size'] = x.Brewery_Size
             annual_production_dict['Breweries_Count'] = x.Breweries_Count
             annual_production_dict['Total_Barrels'] = x.Total_Barrels
             annual_production_dict['Domestic_Consumption'] = x.Domestic_Consumption

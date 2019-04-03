@@ -1,6 +1,6 @@
 var btn = document.getElementById("VIZ1");
-btn.addEventListener("click",handleclick);
-function handleclick(){
+btn.addEventListener("click",handleclick1);
+function handleclick1(){
 
         const Http = new XMLHttpRequest();
        
@@ -12,7 +12,7 @@ function handleclick(){
                 if(this.status === 200) {
                         
                         var rspns1 = JSON.parse(this.responseText);
-                        console.log(rspns1)
+                        console.log(rspns1.year)
                         
                         
 
@@ -24,8 +24,8 @@ function handleclick(){
 };
 
 var btn = document.getElementById("VIZ3");
-btn.addEventListener("click",handleclick);
-function handleclick(){
+btn.addEventListener("click",handleclick2);
+function handleclick2(){
 
         const Http = new XMLHttpRequest();
        
@@ -57,11 +57,13 @@ function handleclick(){
 
 
         }
+        Http.send()
+}; 
 
-        
+
 var btn = document.getElementById("VIZ2");
-btn.addEventListener("click",handleclick);
-function handleclick(){
+btn.addEventListener("click",handleclick3);
+function handleclick3(){
 
         const Http = new XMLHttpRequest();
        
