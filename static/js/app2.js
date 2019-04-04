@@ -23,7 +23,7 @@ function handleclick1(){
         Http.send()
 };
 
-var btn = document.getElementById("VIZ3");
+var btn = document.getElementById("VIZ2");
 btn.addEventListener("click",handleclick2);
 function handleclick2(){
 
@@ -38,8 +38,8 @@ function handleclick2(){
                         
                         var rspns2 = JSON.parse(this.responseText);
                         console.log(rspns2)
-
-
+                        
+                        
 
 
 
@@ -61,7 +61,7 @@ function handleclick2(){
         Http.send()
 };
 
-var btn = document.getElementById("VIZ2");
+var btn = document.getElementById("VIZ3");
 btn.addEventListener("click",handleclick3);
 function handleclick3(){
 
