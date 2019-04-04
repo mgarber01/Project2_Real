@@ -17,13 +17,13 @@ from flask import (
     render_template,
     jsonify,
     request)
-from flask_cors import CORS
+#from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 basedir = os.path.abspath(os.path.dirname(__file__ ))
 
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+os.path.join(basedir,"BEER.sqlite.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -38,17 +38,35 @@ class annual_production(db.Model):
     total_barrels = db.Column('total_barrels',db.String(64))
     domestic_consumption = db.Column('domestic_consumption',db.String(64))
     exported_barrels = db.Column('exported_barrels',db.String(64))
-
-db2 = SQLAlchemy(app)
-class vw_total_prod_by_size(db2.Model):
-    __tablename__ = "vw_total_prod_by_size"
-    index = db2.Column("index",db2.Integer,primary_key = True)
-    brewery_size = db2.Column('brewry_size',db2.String(64))
     
-    total_barrels = db2.Column('total_barrels',db2.String(64))
+    
+class total_prod_by_size(db.Model):
+    __tablename__ = "total_prod_by_size"
+    index = db.Column("_rowid_",db.Integer,primary_key = True)
+    brewery_size = db.Column('brewry_size',db.String(64))
+    
+    total_barrels = db.Column('total_barrels',db.String(64))
    
     
-
+class yoy_prod_by_size(db.Model):
+    __tablename__ = "yoy_prod_by_size"
+    index = db.Column("_rowid_",db.Integer,primary_key = True)
+    brewery_size = db.Column('brewry_size',db.String(64))
+    
+    yr07 = db.Column('2007',db.String(64))
+    yr08 = db.Column('2008',db.String(64))
+    yr09 = db.Column('2009',db.String(64))
+    yr10 = db.Column('2010',db.String(64))
+    yr11 = db.Column('2011',db.String(64))
+    yr12 = db.Column('2012',db.String(64))
+    yr13 = db.Column('2013',db.String(64))
+    yr14 = db.Column('2014',db.String(64))
+    yr15 = db.Column('2015',db.String(64))
+    yr16 = db.Column('2016',db.String(64))
+    yr17 = db.Column('2017',db.String(64))
+   
+   
+    
 
 
 
@@ -84,11 +102,35 @@ def grab():
 
 
 
+@app.route("/grab/size", methods = ['GET'])
+def grab3():
+     if request.method == "GET":
+        view_list = []
+        results = db.session.query(yoy_prod_by_size).all()
+        for x in results:
+            view_dict = {}
+
+            view_dict['brewery_size'] = x.brewery_size
+            view_dict['2007'] = x.yr07
+            view_dict['2008'] = x.yr08
+            view_dict['2009'] = x.yr09
+            view_dict['2010'] = x.yr10
+            view_dict['2011'] = x.yr11
+            view_dict['2012'] = x.yr12
+            view_dict['2013'] = x.yr13
+            view_dict['2014'] = x.yr14
+            view_dict['2015'] = x.yr15
+            view_dict['2016'] = x.yr16
+            view_dict['2017'] = x.yr17
+            view_list.append(view_dict)
+        return jsonify(view_list)
+
+
 @app.route("/grab/data", methods = ['GET'])
 def grab2():
      if request.method == "GET":
         view_list = []
-        results = db2.session.query(vw_total_prod_by_size).all()
+        results = db.session.query(total_prod_by_size).all()
         for x in results:
             view_dict = {}
 
@@ -96,7 +138,6 @@ def grab2():
             view_dict['total_barrels'] = x.total_barrels
             view_list.append(view_dict)
         return jsonify(view_list)
-
         
 
         
