@@ -67,7 +67,7 @@ function handleclick1(){
         Http.send()
         };
 // PLOT 2
-var btn = document.getElementById("VIZ2");
+var btn = document.getElementById("VIZ3");
 btn.addEventListener("click",handleclick2);
 function handleclick2(){
 
@@ -107,13 +107,13 @@ function handleclick2(){
                                         title: "Year"
                                 },
                                 yaxis: {
-                                        title: "Total Barrels",
+                                        title: "Exported Barrels",
                                         // range: [0, 2000000],
                                         color: 'rgb(205,92,92)'
                                 
                                 },
                                 zaxis: {
-                                        title: "Exported Barrels"
+                                        title: "Total Barrels"
                                 },
                                 autosize: false,
                                 width: 650,
@@ -128,7 +128,7 @@ function handleclick2(){
                                 showlegend: true
                         };
                 
-                Plotly.newPlot('myDiv2', data_2, layout_2);
+                Plotly.newPlot('myDiv3', data_2, layout_2);
 
 
                 }
@@ -152,7 +152,7 @@ function handleclick2(){
         Http.send()
 };
 
-var btn = document.getElementById("VIZ3");
+var btn = document.getElementById("VIZ2");
 btn.addEventListener("click",handleclick3);
 function handleclick3(){
 
@@ -206,7 +206,7 @@ function handleclick3(){
                                 },
                         };
                         
-                        Plotly.newPlot('myDiv3', data_3, layout_3);
+                        Plotly.newPlot('myDiv2', data_3, layout_3);
                 
                 
                 

@@ -178,7 +178,7 @@ def grab4():
             view_dict['2015'] = x.yr15
             view_dict['2016'] = x.yr16
             view_dict['2017'] = x.yr17
-            view_list.append(view_dict)
+            view_list.append(view_dict) 
         return jsonify(view_list)
 
         

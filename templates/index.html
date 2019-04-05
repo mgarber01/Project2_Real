@@ -10,7 +10,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
-		<link rel=" icon" type = "img/png" href="..\static/images/beerfive.png">
 		</head>
 	<body>
 	  <div class="wrapper">
@@ -28,7 +27,8 @@
           <h1>Beer</h1>
           <p>Production and Consumption in the Craft Brewery Age</p>
         </div>
-		<!-- </div> -->			
+		<div class = "whatever">
+            <div class = "container">
 			<div class = "column">
 				<div class = "row">
 				<button id = 'VIZ1' type="button" class="btn btn-outline-primary"><font color="Black">VIZ1</font></button>
@@ -41,18 +41,26 @@
 			<div class = row>
 			<button id = "VIZ3" type="button" class="btn btn-outline-primary"><font color="Black">VIZ3</font></button>
 				
+        </div>
+        &nbsp;&nbsp;
+        <div class = row>
+                <a href= "http://127.0.0.1:5000">
+			<button id = "CLR" type="button" class="btn btn-outline-primary"><font color="Black">CLR</font></button>
+			</a>	
 		</div>
 			&nbsp;&nbsp;
 		</div>
 			
-	    <div class="barchart">
+	    <div class="barchart" id="myDiv1">
 	    </div>
-	    <div class="treechart">
+	    <div class="treechart" id="myDiv2">
 				
 	    </div>
-	    <div class="wavychart">
+	    <div class="wavychart" id="myDiv3">
 	    </div>
-	 <script type="text/javascript" src="..\static/js/app2.js"></script>
+     <script type="text/javascript" src="..\static/js/app2.js"></script>
+     </div>
+     </div>
 	 </div>
     </body>
 </html>

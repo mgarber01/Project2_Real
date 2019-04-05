@@ -4,15 +4,15 @@ function buildBar() {
     var data = rspns1;
 
     var trace1 = {
-		x: 'Brewery_Size',
-		y: 'Total Barrels',
+		x: 'brewery_size',
+		y: 'total_barrels',
 		name: 'Sales',
 		type: 'bar'
 	};
 
 	var trace2 = {
-		x: 'Brewery_Size',
-		y: 'Domestic_Consumption',
+		x: 'brewery_ize',
+		y: 'total_barrels',
 		name: 'Production',
 		type: 'bar'
 	};
@@ -22,7 +22,7 @@ function buildBar() {
 	var layout = {barmode: 'group'};
 
   Plotly.newPlot("plot", barData, layout);
-  })
-}
+  
+};
 
 buildBar();
